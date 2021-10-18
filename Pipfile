@@ -1,0 +1,44 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = ">=3.0, <4.0"
+djangorestframework = "*"
+django-crispy-forms = "*"
+django-environ = "*"
+psycopg2-binary = "*"
+pillow = "*"
+pyjwt = "==2.1.0"
+djangorestframework-simplejwt = "*"
+djoser = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
+whitenoise = "*"
+drf-yasg = "*"
+django-filter = "*"
+celery = "*"
+redis = "*"
+django-celery-email = "*"
+stripe = "*"
+django-cors-headers = "*"
+djangorestframework-camel-case = "*"
+drf-writable-nested = "*"
+django-redis = "*"
+django-cachalot = "*"
+gunicorn = "*"
+gevent = "*"
+boto3 = "*"
+django-storages = "*"
+
+[dev-packages]
+flake8 = "*"
+mixer = "*"
+pre-commit = "*"
+moto = "*"
+coverage = "*"
+django-debug-toolbar = "*"
+
+[requires]
+python_version = "3.9"

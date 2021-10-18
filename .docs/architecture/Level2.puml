@@ -1,0 +1,57 @@
+@startuml C4_Elements
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!define MATERIAL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/material
+
+!include DEVICONS/react.puml
+!include DEVICONS/redis.puml
+!include DEVICONS/postgresql.puml
+!include FONTAWESOME/cc_stripe.puml
+!include MATERIAL/email.puml
+!include MATERIAL/book.puml
+
+title "Luxe Shop Containers"
+
+Person(RU, "Regular User", "A person who would like to buy clothes", "Luxe")
+Person(admin, "Admin", "The admin user of Luxe Shop")
+Person(developer, "Developer", "The developer of the system")
+
+System_Boundary(boundary, "Luxe Shop System"){
+    Container(FE, "Web Client App", "ReactJS", "The FE application of SmartCode", $sprite="react")
+
+    Container_Boundary(Luxe, "API"){
+
+    Container(BE, "REST API", "Django Rest Framework", "BE Client")
+    Container(docs, "API docs", "OpenAPI", "Redoc documentation to API", $sprite="book")
+    Container(admin_site, "Admin Site", "Django Admin", "Admin Site of the application")
+
+}
+
+    Container(FE, "Web Client App", "ReactJS", "FE Client", $sprite="react")
+    Container(background, "Background Processor", "Celery", "Background processor")
+
+    ContainerDb(S3, "S3 Storage", AWS S3, "Storage for static files")
+    ContainerDb(Postgres, "PostgreSQL", AWS RDS, "Database", $sprite="postgresql")
+    ContainerDb(Redis, "Redis", Django Redis Cache, "DB storing cache for high load endpoints", $sprite="redis")
+
+    Rel(RU, FE, "Read/Write JSON")
+    Rel(FE, BE, "Makes API calls to")
+
+    Rel(BE, S3, "Read/Write static files")
+    Rel(BE, Postgres, "Read/Write data")
+    Rel(BE, background, "Delay async tasks")
+    Rel(background, Redis, "Listens to the queue")
+}
+
+Container_Ext(Stripe, "Stripe", "Stripe", "Payment Service", $sprite="cc_stripe")
+
+
+Rel_D(admin, admin_site, "Uses the admin site")
+Rel(BE, Stripe, "Make Payments")
+
+Rel(developer, Luxe, "Full access to API while development")
+
+@enduml
