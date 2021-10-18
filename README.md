@@ -36,7 +36,7 @@ Deploy consists of two parts: deployment of backend and frontend.
 In order to deploy the backend:
 1. Connect to EC2 instance via SSH.
 2. `cd luxe-shop`
-3. `git pull origin main`
+3. `git pull origin master`
 
 In order to deploy the frontend:
 1. `cd luxe-ui`
