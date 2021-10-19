@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from "react";
-import { Row, Col, Image, ListGroup, Button, Card, Form, Carousel } from 'react-bootstrap'
+import {Row, Col, Image, ListGroup, Button, Card, Form, Carousel, Container} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -32,12 +32,11 @@ function ProductDetail({match, history}) {
 
     return (
         <div>
-            <a className='btn btn-light my-3' style={{ position: 'absolute', left: '3%' }} href="/">Go Back</a>
                             <Row>
                                 <div className="row">
                                     {products.map(product => (
                                         <div key={product.slug}>
-                                            <Col md={6} style={{ position: 'absolute', left: '10%', top: '55%',
+                                            <Col md={6} style={{ position: 'absolute', left: '10%', top: '50%',
                                                 transform: 'translate(-20%, -50%)'}}>
                                     <Carousel variant="dark">
                                     {product.productImages.map(image => (
@@ -48,7 +47,7 @@ function ProductDetail({match, history}) {
                                 </Col>
 
 
-                                <Col md={5} style={{ position: 'absolute', left: '60%', top: '55%',
+                                <Col md={5} style={{ position: 'absolute', left: '60%', top: '50%',
                                                 transform: 'translate(-20%, -50%)'}}>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item>

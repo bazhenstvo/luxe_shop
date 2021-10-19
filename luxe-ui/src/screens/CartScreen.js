@@ -43,7 +43,7 @@ function CartScreen({ match, location, history }) {
                         Your shopping cart is empty.&nbsp;
                         <a href="/">Go Back</a>
                     </Message>
-                ) : (
+                    ) : (
                         <ListGroup variant='flush'>
                             {cartItems.map(item => (
                                 <ListGroup.Item key={item.product}>

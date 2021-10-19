@@ -35,10 +35,13 @@ function SearchResults({match}) {
         <Row>
             <Zoom time={500} />
         {products.length === 0 ? (
+            <div>
+                <br/>
                     <Message variant='info'>
                         No products found.&nbsp;
                         <a href="/">Go Back</a>
                     </Message>
+            </div>
                 ) : (
             <Row md={4} className="g-4" style={{justifyContent: 'center'}}>
         {products.map(product => (
@@ -67,10 +70,11 @@ function SearchResults({match}) {
             </Row>
     )}
         </Row>
-        <div style={{ display: "flex", justifyContent: 'center', marginTop: "2%"}}>
-        <Button disabled={prev === null} variant='outline-dark' onClick={() => decrementPageNumber() }>Previous</Button>
-        <Button disabled={next === null} variant='outline-dark' onClick={() => incrementPageNumber() }>Next</Button>
-        </div>
+        {products.length === 0 ? '' : (
+            <div style={{ display: "flex", justifyContent: 'center', marginTop: "2%"}}>
+            <Button disabled={prev === null} variant='outline-dark' onClick={() => decrementPageNumber() }>Previous</Button>
+            <Button disabled={next === null} variant='outline-dark' onClick={() => incrementPageNumber() }>Next</Button>
+            </div> )}
         </div>);
 }
 
