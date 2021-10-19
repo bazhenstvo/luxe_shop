@@ -36,7 +36,7 @@ function ProductDetail({match, history}) {
                                 <div className="row">
                                     {products.map(product => (
                                         <div key={product.slug}>
-                                            <Col md={6} style={{ position: 'absolute', left: '10%', top: '50%',
+                                            <Col md={6} style={{ position: 'absolute', left: '10%', top: '55%',
                                                 transform: 'translate(-20%, -50%)'}}>
                                     <Carousel variant="dark">
                                     {product.productImages.map(image => (
@@ -47,7 +47,7 @@ function ProductDetail({match, history}) {
                                 </Col>
 
 
-                                <Col md={5} style={{ position: 'absolute', left: '60%', top: '50%',
+                                <Col md={5} style={{ position: 'absolute', left: '60%', top: '55%',
                                                 transform: 'translate(-20%, -50%)'}}>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item>
