@@ -55,7 +55,7 @@ function ProductDetail({match, history}) {
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
-                                            Description: {product.description}
+                                            Description: <div className="content" dangerouslySetInnerHTML={{__html: product.description}}></div>
                                         </ListGroup.Item>
                                     </ListGroup>
 
