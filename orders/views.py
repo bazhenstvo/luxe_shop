@@ -1,4 +1,3 @@
-from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, status
 from rest_framework.response import Response
@@ -18,8 +17,6 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all().order_by('-created_at')
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
-    filter_backends = [SearchFilter]
-    search_fields = ['product__title', 'buyer__username']
     pagination_class = None
 
     def get_queryset(self):
