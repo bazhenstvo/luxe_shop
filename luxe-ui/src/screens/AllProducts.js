@@ -126,7 +126,7 @@ function AllProducts({}) {
         ))}
             </Row>
         </Form>
-        <div style={{ display: "flex", justifyContent: 'center', marginTop: "2%"}}>
+        <div style={{ display: "flex", justifyContent: 'center', marginTop: "2%", marginBottom: '10%'}}>
         <Button disabled={prev === null} variant='outline-dark' onClick={() => decrementPageNumber() }>Previous</Button>
         <Button disabled={next === null} variant='outline-dark' onClick={() => incrementPageNumber() }>Next</Button>
         </div>

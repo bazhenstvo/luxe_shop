@@ -47,7 +47,7 @@ function ProductDetail({match, history}) {
                                 </Col>
 
 
-                                <Col md={5} style={{ position: 'absolute', left: '60%', top: '55%',
+                                <Col md={5} style={{ position: 'relative', left: '60%', top: '55%',
                                                 transform: 'translate(-20%, -50%)'}}>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item>
@@ -55,7 +55,7 @@ function ProductDetail({match, history}) {
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
-                                            Description: {product.description}
+                                            Description: <div className="content" dangerouslySetInnerHTML={{__html: product.description}}></div>
                                         </ListGroup.Item>
                                     </ListGroup>
 
@@ -127,7 +127,7 @@ function ProductDetail({match, history}) {
                                                 </Button>
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                <Button
+                                                <Button style={{marginBottom: '15%'}}
                                                     onClick={addToWishlistHandler}
                                                     className='btn-block'
                                                     type='button'>
