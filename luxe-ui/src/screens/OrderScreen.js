@@ -110,7 +110,7 @@ function OrderScreen({ match, history }) {
                                                     <ListGroup.Item>
                                                         <Row>
                                                             <Col md={1}>
-                                                        {item.productImages.map(image => (
+                                                        {item.productImages.slice(0,1).map(image => (
                                                             <div key={image.id}>
                                                                 <Image src={image.image} fluid rounded />
                                                             </div>))}

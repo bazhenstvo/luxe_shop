@@ -51,7 +51,7 @@ function ShippingScreen({ history }) {
     }
 
     return (
-        <FormContainer style={{paddingBottom: '5%'}}>
+        <FormContainer>
             <CheckoutSteps step1 step2 />
             <h1>Shipping</h1>
             <Form onSubmit={submitHandler}>
@@ -118,7 +118,7 @@ function ShippingScreen({ history }) {
 
 
 
-                <Button type='submit' variant='primary'>
+                <Button type='submit' variant='primary' style={{marginBottom: '7%'}}>
                     Continue
                 </Button>
             </Form>
