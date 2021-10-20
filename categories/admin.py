@@ -8,6 +8,7 @@ from products.models import Product
 class ProductAdmin(admin.StackedInline):
     model = Category.products.through
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [ProductAdmin]

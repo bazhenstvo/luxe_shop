@@ -1,14 +1,17 @@
+from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets, status
-from rest_framework.response import Response
 
 from orders.models import Order
 from orders.serializers import OrderSerializer
-from products.models import Product
 
 
-class OrderViewSet(viewsets.ModelViewSet):
+class OrderViewSet(mixins.CreateModelMixin,
+                   mixins.ListModelMixin,
+                   mixins.RetrieveModelMixin,
+                   viewsets.GenericViewSet):
     """
+    create: Create the order for the authenticated user
+
     list: List all the orders for the authenticated user
 
     retrieve: Retrieve specific order for the authenticated user

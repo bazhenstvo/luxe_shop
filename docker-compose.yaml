@@ -44,7 +44,5 @@ services:
       - .env
     volumes:
       - ./.conf/nginx:/etc/nginx/conf.d
-      - ./static:/app/static
-      - ./media:/app/media
     depends_on:
       - api
