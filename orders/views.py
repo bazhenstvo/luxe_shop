@@ -17,12 +17,10 @@ class OrderViewSet(mixins.CreateModelMixin,
     retrieve: Retrieve specific order for the authenticated user
 
     """
-    queryset = Order.objects.all().order_by('-created_at')
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = None
 
     def get_queryset(self):
-        queryset = Order.objects.all().order_by('-created_at')
-        query_set = queryset.filter(buyer=self.request.user)
-        return query_set
+        queryset = Order.objects.filter(buyer=self.request.user).order_by('-created_at')
+        return queryset
