@@ -61,3 +61,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         db_table = 'authentication'
         verbose_name = _('user')
         verbose_name_plural = _('users')
+        ordering = ['username']
