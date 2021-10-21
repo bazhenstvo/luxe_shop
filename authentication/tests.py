@@ -59,8 +59,8 @@ class EmailVerificationTest(APITestCase):
         # get user details
         response = self.client.get(self.user_details_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.json()[0]["email"], self.user_data["email"])
-        self.assertEqual(response.json()[0]["username"], self.user_data["username"])
+        self.assertEqual(response.json()['results'][0]['email'], self.user_data["email"])
+        self.assertEqual(response.json()['results'][0]["username"], self.user_data["username"])
 
     def test_user_list_unauthenticated(self):
         self.client.force_authenticate(user=None)
@@ -185,3 +185,23 @@ class PasswordResetTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         # the email wasnt send
         self.assertEqual(len(mail.outbox), 0)
+
+class CustomAccountManagerTest(APITestCase):
+    user_data = {
+        "email": "test@example.com", 
+        "username": "test_user",
+        "password": "verysecret",
+        "first_name": "jon",
+        "last_name": "doe",
+        "address": "12 lee st",
+        "phone": "+380987656677",
+    }
+
+    def test_create_superuser(self):
+        user = User.objects.create_superuser(**self.user_data)
+        user.is_active = True
+        user.is_staff = True
+        user.is_superuser = True
+        self.assertTrue(user.is_active)
+        self.assertTrue(user.is_staff)
+        self.assertTrue(user.is_superuser) 

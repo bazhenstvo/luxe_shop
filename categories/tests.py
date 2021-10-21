@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.utils.text import slugify
 from rest_framework.test import APIRequestFactory, APITestCase
 
 from categories.models import Category
@@ -20,6 +21,9 @@ class CategoryViewSetTest(APITestCase):
 
 	def test_active_category(self):
 		self.assertTrue(self.category.is_active)
+
+	def test_save_method(self):
+		self.assertEqual(slugify(self.category.name), self.category.slug)
 
 	def test_str_method(self):
 		self.assertEqual(str(self.category), self.category.name)

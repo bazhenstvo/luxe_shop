@@ -8,7 +8,7 @@ from products.models import Product
 
 
 class OrderViewSetTestWithAuthentication(APITestCase):
-	orders = reverse("v1:orders:order-list")
+	orders = reverse("v1:orders:Order-list")
 	login_url = reverse("v1:authentication:login")
 	login_data = {
         "email": "example@example.com", 
@@ -38,29 +38,19 @@ class OrderViewSetTestWithAuthentication(APITestCase):
 		self.assertEqual(response.status_code, 400)
 
 	def test_retrieve_order(self):
-		response = self.client.get(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}))
+		response = self.client.get(reverse("v1:orders:Order-detail", kwargs={'pk': self.order.id}))
 		self.assertEqual(response.status_code, 200)
 
 	def test_retrieve_all_orders(self):
 		response = self.client.get(self.orders)
 		self.assertEqual(response.status_code, 200)
 
-	def test_update_order(self):
-		response = self.client.put(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}), 
-																		{'buyer': self.user.id,
-																		'shipping_address': 'update'})
-		self.assertEqual(response.status_code, 400)
-
-	def test_delete_order(self):
-		response = self.client.delete(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}))
-		self.assertEqual(response.status_code, 204)
-
 	def test_str_method_order(self):
 		self.assertEqual(str(self.order), self.order.product.first().slug)
 
 
 class OrderViewSetTestNoAuthentication(APITestCase):
-	orders = reverse("v1:orders:order-list")
+	orders = reverse("v1:orders:Order-list")
 
 	def setUp(self):
 		self.product = Product.objects.create(title="test", price=10)
@@ -78,7 +68,7 @@ class OrderViewSetTestNoAuthentication(APITestCase):
 		self.assertEqual(response.status_code, 401)
 
 	def test_retrieve_order(self):
-		response = self.client.get(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}))
+		response = self.client.get(reverse("v1:orders:Order-detail", kwargs={'pk': self.order.id}))
 		self.assertEqual(response.status_code, 401)
 
 	def test_retrieve_all_orders(self):
@@ -86,14 +76,14 @@ class OrderViewSetTestNoAuthentication(APITestCase):
 		self.assertEqual(response.status_code, 401)
 
 	def test_update_order(self):
-		response = self.client.put(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}), 
+		response = self.client.put(reverse("v1:orders:Order-detail", kwargs={'pk': self.order.id}), 
 																		{'buyer': self.user.id,
 																		'product': self.product.id,
 																		'comment':'bye'})
 		self.assertEqual(response.status_code, 401)
 
 	def test_delete_order(self):
-		response = self.client.delete(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}))
+		response = self.client.delete(reverse("v1:orders:Order-detail", kwargs={'pk': self.order.id}))
 		self.assertEqual(response.status_code, 401)
 
 
@@ -123,17 +113,5 @@ class AccessAnotherUserOrder(APITestCase):
 
 
 	def test_retrieve_order(self):
-		response = self.client.get(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}))
-		self.assertEqual(response.status_code, 404)
-
-
-	def test_update_order(self):
-		response = self.client.put(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}), 
-																		{'buyer': 1,
-																		'product': 1,
-																		'comment':'hello'})
-		self.assertEqual(response.status_code, 404)
-
-	def test_delete_order(self):
-		response = self.client.delete(reverse("v1:orders:order-detail", kwargs={'pk': self.order.id}))
+		response = self.client.get(reverse("v1:orders:Order-detail", kwargs={'pk': self.order.id}))
 		self.assertEqual(response.status_code, 404)

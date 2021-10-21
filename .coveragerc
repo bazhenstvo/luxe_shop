@@ -6,6 +6,7 @@ omit=
     luxe-ui/*
     */celery.py
     stripe_payments/*
+    */djoser_config.py
 
     # Migrations are generated automatically and cannot be tested
     */migrations/*

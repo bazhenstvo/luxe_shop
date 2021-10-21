@@ -15,6 +15,7 @@ class Category(models.Model):
 		verbose_name = 'Category'
 		verbose_name_plural = 'Categories'
 		app_label = 'categories'
+		ordering = ['-created_at']
 
 	def __str__(self):
 		return self.name
@@ -22,11 +23,5 @@ class Category(models.Model):
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)
 		if not self.slug:
-			slug = slugify(self.name)
-			try:
-				product_obj = Category.objects.get(slug=slug)
-				slug += "-" + str(self.id)
-			except Category.DoesNotExist:
-				pass
-			self.slug = slug
+			self.slug = slugify(self.name)
 			self.save()

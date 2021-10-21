@@ -57,6 +57,8 @@ function CategoryDetail({match}) {
         ))}
             </Row>
     )}
+    <div style={{marginBottom: '5%'}}>
+    </div>
 
         </Row>);
 }

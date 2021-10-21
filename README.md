@@ -13,7 +13,7 @@ The infrastructure of LUXE project consists of the following services:
 * PostgreSQL database
 * Django-Redis-Cache for processing high load endpoints
 * AWS EC2 for API
-* AWS S3 for assets
+* AWS S3 for React App and assets
 * AWS RDS for database
 * Stripe for processing payments
 
@@ -22,10 +22,12 @@ The infrastructure of LUXE project consists of the following services:
 Steps to run application locally:
 1. Clone the project
 2. `cd luxe`
-3. `pipenv shell`
-4. `docker-compose -f docker-compose-dev.yaml up --build`
-5. `python manage.py migrate`
-6. `python manage.py runserver`
+3. `pip install pipenv`
+4. `pipenv install`
+5. `pipenv shell`
+6. `docker-compose -f docker-compose-dev.yaml up --build`
+7. `python manage.py migrate`
+8. `python manage.py runserver`
 
 ### Test environment
 How to run tests.
